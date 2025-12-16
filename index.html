@@ -483,20 +483,28 @@
                 grid-template-columns: 1fr;
             }
 
-            #contact .section-title {
+            /*#contact .section-title {
                 white-space: normal;
-            }
+            }*/
         }
 
         /* FORCE contact headline to stay on ONE LINE */
-        #contact .section-title {
+        /* #contact .section-title {
             white-space: nowrap;
             max-width: none;
-        }
+        } 
 
         @media (max-width: 768px) {
             #contact .section-title {
                 white-space: normal !important;
+            }
+        }*/
+
+        /* FORCE contact headline to stay on ONE LINE on desktop only */
+        @media (min-width: 769px) {
+            #contact .section-title {
+                white-space: nowrap;
+                max-width: none;
             }
         }
 
