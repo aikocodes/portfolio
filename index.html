@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aiko Kato - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-light: #f5f1ed;
+            --text-dark: #2a2a2a;
+            --text-light: #ffffff;
+            --accent: #4a5568;
+            --hero-bg: #fafaf9;
+            --hero-text: #2d5f4f;
+            --hero-accent: #4a8b6f;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: background 0.3s ease;
+            border-bottom: 1px solid rgba(45, 95, 79, 0.2);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--text-dark);
+        }
+
+        nav.hero-nav .logo {
+            color: var(--hero-text);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            transition: opacity 0.3s ease;
+            letter-spacing: 0.05em;
+        }
+
+        nav.hero-nav .nav-links a {
+            color: var(--hero-text);
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        .cta-button {
+            padding: 0.8rem 2rem;
+            background: var(--text-dark);
+            color: var(--text-light);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: transform 0.3s ease;
+        }
+
+        nav.hero-nav .cta-button {
+            background: var(--hero-text);
+            color: var(--text-light);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--hero-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--hero-text);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+            color: var(--text-dark);
+        }
+
+        .hero-name {
+            font-family: 'Georgia', serif;
+            font-size: 6.5rem;
+            font-weight: 400;
+            color: #2d5f4f;
+            display: inline-block;
+        }
+
+        .strawberry-icon {
+            font-size: 3rem;
+            color: #2d5f4f;
+            margin: 0 1.5rem;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            max-width: 1000px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.05rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+
+        /* Content Sections */
+        section {
+            padding: 8rem 4rem;
+            background: var(--bg-light);
+        }
+
+        section:nth-child(even) {
+            background: #ffffff;
+        }
+
+        .section-header {
+            text-align: center;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 4rem;
+            line-height: 1.4;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #projects .section-title {
+            max-width: 1000px;
+        }        
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: #4a4a4a;
+        }
+
+        .about-image {
+            width: 100%;
+            aspect-ratio: 4 / 5;          /* ← THIS is the key */
+            background: url('profile.png') center/cover;
+            border-radius: 8px;
+        }
+        
+        
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: var(--text-light);
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .project-description {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Papers Section */
+        .papers-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            gap: 3rem;
+        }
+
+        .papers-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .paper-item {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .paper-item:hover {
+            opacity: 0.6;
+        }
+
+        /* StoryMap Card */
+        .storymap-card {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2rem;
+            text-decoration: none;
+            color: var(--text-dark);
+            align-items: center;
+        }
+
+        .storymap-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: url('storymap-preview.png') center / cover no-repeat;
+            border-radius: 8px;
+        }
+        
+
+        .storymap-text h3 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 0.8rem;
+        }
+
+        .storymap-text p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #4a4a4a;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Contact text hierarchy FIX */
+        .contact-subtitle {
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-top: 1rem;        /* normal spacing */
+            margin-bottom: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: row;          /* ← horizontal */
+            justify-content: center;      /* ← centered */
+            align-items: center;
+            gap: 3rem;                    /* space between Email & LinkedIn */
+            margin-top: 3rem;
+        }        
+
+        .contact-item {
+            display: flex;              /* ← THIS is the missing piece */
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item {
+            width: 160px;              /* 🔑 forces optical balance */
+            justify-content: center;   /* centers icon + text inside */
+        }
+
+        .contact-item:hover {
+            opacity: 0.6;
+        }
+
+        /* Make Contact headline smaller + match subtitle */
+        #contact .section-title {
+            font-size: 1.6rem;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 4rem;
+            background: var(--text-dark);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Strawberry Cursor Trail */
+        .strawberry {
+            position: absolute;
+            pointer-events: none;
+            font-size: 20px;
+            z-index: 9999;
+            animation: fadeOut 1s forwards;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(0, 20px) scale(0.5);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-name {
+                font-size: 3rem;
+            }
+
+            .strawberry-icon {
+                font-size: 1.8rem;
+                margin: 0 0.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            section {
+                padding: 4rem 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* FORCE contact headline to stay on ONE LINE */
+        #contact .section-title {
+            white-space: nowrap;
+            max-width: none;
+        }
+
+        /* Contact icons horizontal layout */
+        .contact-info.horizontal {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 3rem;
+        }
+
+        .icon-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;        /* space between icon and text */
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+        }
+
+        .icon-link img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .icon-link:hover {
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar" class="hero-nav">
+        <div class="logo">AIKO KATO</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#papers">Papers</a></li>
+        </ul>
+        <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+            Get in Touch
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Hello! I'm <span class="strawberry-icon">🍓</span><span class="hero-name">Aiko Kato</span><span class="strawberry-icon">🍓</span>
+            </h1>
+            <p class="hero-subtitle">
+                A senior at Pomona College, majoring in Computer Science and minoring in Digital Media Studies.
+                Welcome to my portfolio!
+            </p>
+        </div>
+        <div class="scroll-indicator" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+            DISCOVER ↓
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-header">🍓 Who I Am 🍓</div>
+        <h2 class="section-title">
+            I'm a designer and developer passionate about building human-centered systems at the intersection of technology and culture.
+        </h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Born in Kyoto and raised across New Jersey and Tokyo, I've grown up navigating different cultures, languages, 
+                    and ways of thinking. I am now based in Claremont, California, where I study at Pomona College as a Yanai Tadashi (UNIQLO) 
+                    Scholar.
+                </p>
+                <p>
+                    My academic interests center on examining the societal impact of advances in AI through computational approaches, 
+                    including data analysis and data visualization from a computer science perspective, as well as theoretical inquiry from a 
+                    digital media studies framework. In addition, I am passionate about textile and costume design and am particularly drawn to 
+                    research at the intersection of computation and art.
+                </p>
+                <p>
+                    I have experience across e-commerce design and data analytics, web and app development, UI/UX design, and strategy 
+                    consulting. My work focuses on translating complex data and systems into intuitive, user-centered experiences, bridging 
+                    technical rigor with thoughtful design and strategic insight.
+                </p>
+            </div>
+            <div class="about-image"></div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-header">🍓 Technical Projects 🍓</div>
+        <h2 class="section-title">Projects exploring data analysis and visualization across media, science, and society.</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <a href="https://github.com/sophycodes/CS158EmotionRecognitionModel"
+                target="_blank"
+                class="project-link">
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('human.png')"></div>
+                        <div class="project-overlay">
+                            <h3 class="project-title">Human Emotion Recognition</h3>
+                            <p class="project-description">CNN-based emotion recognition and real-time inference</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="project-card">
+                <a href="https://github.com/aikocodes/Impact-of-AI-on-Digital-Media"
+                target="_blank"
+                class="project-link">
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('digital_media.png')"></div>
+                        <div class="project-overlay">
+                            <h3 class="project-title">Impact of AI on Digital Media</h3>
+                            <p class="project-description">Interactive data visualization and analytical dashboard</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="project-card">
+                <a href="https://github.com/aikocodes/Hollywood-Data-Visualization"
+                target="_blank"
+                class="project-link">
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('hollywood.png')"></div>
+                        <div class="project-overlay">
+                            <h3 class="project-title">Hollywood Data Visualization</h3>
+                            <p class="project-description">Large-scale industry analytics and network visualization</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="project-card">
+                <a href="https://github.com/aikocodes/VR-Protein-Visualization"
+                target="_blank"
+                class="project-link">
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('protein.png')"></div>
+                        <div class="project-overlay">
+                            <h3 class="project-title">VR Protein Visualization</h3>
+                            <p class="project-description">Immersive 3D molecular visualization and interaction</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="project-card">
+                <a href="https://github.com/aikocodes/Spotify-Music-Analytics"
+                target="_blank"
+                class="project-link">
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('spotify.png')"></div>
+                        <div class="project-overlay">
+                            <h3 class="project-title">Spotify Music Analytics</h3>
+                            <p class="project-description">Exploratory data visualization for music streaming trends</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="project-card">
+                <a href="https://github.com/aikocodes/COVID19-Case-Trend"
+                target="_blank"
+                class="project-link">
+                    <div class="project-card">
+                        <div class="project-image" style="background-image: url('covid.png')"></div>
+                        <div class="project-overlay">
+                            <h3 class="project-title">COVID19 Case Trend</h3>
+                            <p class="project-description">Time-series analysis and comparative visualization</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Papers Section -->
+    <section id="papers">
+        <div class="section-header">🍓 Research & Writing 🍓</div>
+        <h2 class="section-title">
+            Selected papers and interactive research exploring AI, digital media, and culture.
+        </h2>
+        <div class="papers-content">
+            <!-- Papers list -->
+            <div class="papers-list">
+                <a href="paper0.pdf" class="paper-item">
+                    📄 Bridging Detection and Fairness in Generative AI: A Cross-Domain Evaluation Approach
+                </a>
+                <a href="paper1.pdf" class="paper-item">
+                    📄 Green AI as Narrative: How Corporations Reframe Environmental Responsibility
+                </a>
+                <a href="paper2.pdf" class="paper-item">
+                    📄 Authenticity, Ownership, and Techno-Orientalism: Reconfiguring K-pop through AI Virtual Idols
+                </a>
+                <a href="paper3.pdf" class="paper-item">
+                    📄 Defining the Self in the Digital Age: Armageddon and the Collapse of Duality
+                </a>
+            </div>
+        
+            <!-- StoryMap visual -->
+            <a 
+                href="https://storymaps.arcgis.com/stories/8e7e6f3192814f6294b7c802a3b3427b"
+                target="_blank"
+                class="storymap-card"
+            >
+                <div class="storymap-image"></div>
+                <div class="storymap-text">
+                    <h3>StoryMap: Hidden Geography of AI</h3>
+                    <p>
+                        An interactive geospatial analysis that maps four AI inference journeys to examine how routing, regulation, and 
+                        regional energy systems produce uneven environmental impacts.
+                    </p>
+                </div>
+            </a>
+        </div>        
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-header">🍓 Let's Connect 🍓</div>
+        <h2 class="section-title">
+            I'm always excited to connect with people who share an interest in AI, design, and culture.
+        </h2>
+        <p class="contact-subtitle">
+            Please feel free to reach out anytime!
+        </p>        
+        <div class="contact-content">
+            <div class="contact-info horizontal">
+                <a href="mailto:akto2022@mymail.pomona.edu" class="contact-item icon-link">
+                    <img src="email.png" alt="Email icon">
+                    <span>Email</span>
+                </a>
+            
+                <a href="https://www.linkedin.com/in/aikokato/" target="_blank" class="contact-item icon-link">
+                    <img src="linkedin.png" alt="LinkedIn icon">
+                    <span>LinkedIn</span>
+                </a>
+
+                <a href="https://github.com/aikocodes" target="_blank" class="contact-item icon-link">
+                    <img src="github.png" alt="GitHub icon">
+                    <span>GitHub</span>
+                </a>
+
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Aiko Kato. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Strawberry cursor trail effect
+        document.addEventListener('mousemove', (e) => {
+            const strawberry = document.createElement('div');
+            strawberry.className = 'strawberry';
+            strawberry.textContent = '🍓';
+        
+            strawberry.style.left = e.pageX + 'px';   // pageX includes scroll
+            strawberry.style.top = e.pageY + 'px';
+        
+            document.body.appendChild(strawberry);
+        
+            setTimeout(() => {
+                strawberry.remove();
+            }, 1000);
+        });
+        
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                navbar.classList.remove('hero-nav');
+            } else {
+                navbar.classList.remove('scrolled');
+                navbar.classList.add('hero-nav');
+            }
+        });
+
+        // Smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
