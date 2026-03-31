@@ -220,7 +220,7 @@
 
         .about-image {
             width: 100%;
-            aspect-ratio: 4 / 5;          /* ← THIS is the key */
+            aspect-ratio: 4 / 5;
             background: url('profile.png') center/cover;
             border-radius: 8px;
         }
@@ -345,27 +345,26 @@
             text-align: center;
         }
 
-        /* Contact text hierarchy FIX */
         .contact-subtitle {
             text-align: center;
             font-size: 1.6rem;
             font-weight: 300;
             color: var(--text-dark);
-            margin-top: 1rem;        /* normal spacing */
+            margin-top: 1rem;
             margin-bottom: 3rem;
         }
         
         .contact-info {
             display: flex;
-            flex-direction: row;          /* ← horizontal */
-            justify-content: center;      /* ← centered */
+            flex-direction: row;
+            justify-content: center;
             align-items: center;
-            gap: 3rem;                    /* space between Email & LinkedIn */
+            gap: 3rem;
             margin-top: 3rem;
         }        
 
         .contact-item {
-            display: flex;              /* ← THIS is the missing piece */
+            display: flex;
             align-items: center;
             gap: 12px;
             font-size: 1.2rem;
@@ -375,15 +374,14 @@
         }
 
         .contact-item {
-            width: 160px;              /* 🔑 forces optical balance */
-            justify-content: center;   /* centers icon + text inside */
+            width: 160px;
+            justify-content: center;
         }
 
         .contact-item:hover {
             opacity: 0.6;
         }
 
-        /* Make Contact headline smaller + match subtitle */
         #contact .section-title {
             font-size: 1.6rem;
             line-height: 1.5;
@@ -482,25 +480,9 @@
             .projects-grid {
                 grid-template-columns: 1fr;
             }
-
-            /*#contact .section-title {
-                white-space: normal;
-            }*/
+            
         }
 
-        /* FORCE contact headline to stay on ONE LINE */
-        /* #contact .section-title {
-            white-space: nowrap;
-            max-width: none;
-        } 
-
-        @media (max-width: 768px) {
-            #contact .section-title {
-                white-space: normal !important;
-            }
-        }*/
-
-        /* FORCE contact headline to stay on ONE LINE on desktop only */
         @media (min-width: 769px) {
             #contact .section-title {
                 white-space: nowrap;
@@ -519,7 +501,7 @@
         .icon-link {
             display: flex;
             align-items: center;
-            gap: 0.8rem;        /* space between icon and text */
+            gap: 0.8rem;
             text-decoration: none;
             color: var(--text-dark);
             font-size: 1.2rem;
@@ -699,6 +681,9 @@
                 <a href="paper2.pdf" class="paper-item">
                     📄 Authenticity, Ownership, and Techno-Orientalism: Reconfiguring K-pop through AI Virtual Idols
                 </a>
+                <a href="paper4.pdf" class="paper-item">
+                    📄 The Invisible Contract on the Visible Interface: Reconfiguring Dominance and Access in "If You Had My Love"
+                </a>
                 <a href="paper3.pdf" class="paper-item">
                     📄 Defining the Self in the Digital Age: Armageddon and the Collapse of Duality
                 </a>
@@ -759,13 +744,12 @@
     </footer>
 
     <script>
-        // Strawberry cursor trail effect
         document.addEventListener('mousemove', (e) => {
             const strawberry = document.createElement('div');
             strawberry.className = 'strawberry';
             strawberry.textContent = '🍓';
         
-            strawberry.style.left = e.pageX + 'px';   // pageX includes scroll
+            strawberry.style.left = e.pageX + 'px';
             strawberry.style.top = e.pageY + 'px';
         
             document.body.appendChild(strawberry);
@@ -775,8 +759,6 @@
             }, 1000);
         });
         
-
-        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         
         window.addEventListener('scroll', () => {
@@ -789,7 +771,6 @@
             }
         });
 
-        // Smooth scroll for all anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
